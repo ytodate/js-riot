@@ -1,4 +1,3 @@
-import action from '../actions/index.js'
 import './tabs'
 import './app'
 <count>
@@ -18,12 +17,6 @@ import './app'
     }
     console.log("count", this.opts)
 
-    let store = this.opts.store
-    this.state = store.getState()
-
-    this.setCount = (count) => {
-      store.dispatch(action.setCount(count))
-    }
   </script>
 </count>
 
