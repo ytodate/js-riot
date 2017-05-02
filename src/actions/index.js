@@ -1,8 +1,10 @@
 import * as actions from '../constants/actions'
 
-export function setCount(value) {
+export function setCount(e) {
   return {
     type: actions.SET_COUNT,
-    count: value + 1
+    state: {
+      count: 1
+    }
   }
 }

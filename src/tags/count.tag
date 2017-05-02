@@ -1,13 +1,15 @@
-import action from '../actions/index.js'
+import * as action from '../actions/index.js'
 import './tabs'
-import './app'
+import './header'
+
 <count>
-  <app>
+  <div data-is="header" title="count demo page"></div>
   <div data-is="tabs"></div>
   <p> count: { count }</p>
+  <p> state count: { this.state.count }</p>
   <button onclick={ add }>+</button>
   <button onclick={ minus }>-</button>
-  </app>
+  <button onclick={ setCount }>+ store</button>
   <script>
     this.count = 0;
     add () {
@@ -16,10 +18,15 @@ import './app'
     minus () {
       this.count -= 1;
     }
-    console.log("count", this.opts)
 
     let store = this.opts.store
     this.state = store.getState()
+    this.state.count = 0;
+
+    store.subscribe(() => {
+      this.state = store.getState();
+      this.update();
+    });
 
     this.setCount = (count) => {
       store.dispatch(action.setCount(count))
